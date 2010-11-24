@@ -59,11 +59,12 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         var observer = {
             run: function() {
                 var input = this.getInput();
+                    this.observedInputLength = input.length;
 
-                if (input.length != this.observedInputLength) {
+              /*  if (input.length != this.observedInputLength) {
                     this.observedInputLength = input.length;
                     this.autosize();
-                }
+                }*/
             },
             scope: this,
             interval: this.observationInterval,
@@ -87,9 +88,13 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         FEMhub.InputCell.superclass.onRender.apply(this, arguments);
 
         this.el.addClass('femhub-cell-input');
+ this.el.addClass('femhub-cell-input');
 
-        var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea>";
-        var ta_args = ['femhub-cell-io-textarea femhub-cell-input-textarea', '1', '0', 'off', 'false'];
+      //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
+       var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/cos.html' width=500 height=600 FRAMEBORDER=0>";
+      //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea><textarea id='asdf' class='codepress php' style='width:700px;height:300px;' wrap='off'>asdasdas </textarea>";
+     
+        var ta_args = [''];//['femhub-cell-io-textarea femhub-cell-input-textarea', '1', '0', 'off', 'false'];
         var ta_tmpl = new Ext.DomHelper.createTemplate(ta_form);
 
         this.el_textarea = ta_tmpl.append(this.el_content, ta_args, true);
