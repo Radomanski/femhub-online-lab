@@ -24,12 +24,13 @@ CodePress = function(obj) {
 	self.options = self.textarea.className;
 	
 	self.initialize = function() {
-		//window.addEventListener('click', function(){alert('zxc');}, true);
+		window.addEventListener('click', function(){alert('zxc');}, true);
 		self.contentWindow.addEventListener('keypress', self.keyHandler, true);	
 		self.editor = self.contentWindow.CodePress;
 		self.editor.body = self.contentWindow.document.getElementsByTagName('body')[0];
 		self.editor.setCode(self.textarea.value);
 		self.setOptions();
+
 		self.editor.syntaxHighlight('init');
 		self.textarea.style.display = 'none';
 		self.style.position = 'static';
@@ -52,7 +53,6 @@ CodePress = function(obj) {
 	}
 	// obj can by a textarea id or a string (code)
 	self.edit = function(obj,language) {
-		alert('ble');
 		if(obj) self.textarea.value = document.getElementById(obj) ? document.getElementById(obj).value : obj;
 		if(!self.textarea.disabled) return;
 		self.language = language ? language : self.getLanguage();
@@ -133,16 +133,19 @@ CodePress.languages = {
 
 
 CodePress.run = function() {
+
 	s = document.getElementsByTagName('script');
 	for(var i=0,n=s.length;i<n;i++) {
 		if(s[i].src.match('codepress.js')) {
+
 			CodePress.path = s[i].src.replace('codepress.js','');
 		}
 	}
 	t = document.getElementsByTagName('textarea');
 	for(var i=0,n=t.length;i<n;i++) {
-		if(t[i].className.match('codepress')) {
+	if(t[i].className.match('codepress')) {
 			id = t[i].id;
+
 			t[i].id = id+'_cp';
 			eval(id+' = new CodePress(t[i])');
 			t[i].parentNode.insertBefore(eval(id), t[i]);

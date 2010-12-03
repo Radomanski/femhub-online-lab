@@ -21,8 +21,6 @@ CodePress = {
 
 	// set initial vars and start sh
 	initialize : function() {
-		//alert('Gecko.initialize');
-
 		if(typeof(editor)=='undefined' && !arguments[0]) return;
 		body = document.getElementsByTagName('body')[0];
 		body.innerHTML = body.innerHTML.replace(/\n/g,"");
@@ -96,8 +94,6 @@ CodePress = {
 	},
 	
 	getEditor : function() {
-		//alert('Gecko.getEditor');
-
 		if(!document.getElementsByTagName('pre')[0]) {
 			body = document.getElementsByTagName('body')[0];
 			if(!body.innerHTML) return body;
@@ -109,7 +105,6 @@ CodePress = {
 	
 	// syntax highlighting parser
 	syntaxHighlight : function(flag) {
-		//alert('Gecko.synthaxHighlighting');
 
 		//if(document.designMode=='off') document.designMode='on'
 		if(flag != 'init') { window.getSelection().getRangeAt(0).insertNode(document.createTextNode(cc));}
@@ -137,7 +132,6 @@ CodePress = {
 	},
 	
 	snippets : function(evt) {
-		//alert('Gecko.snipnets');
 		var snippets = Language.snippets;	
 		var trigger = this.getLastWord();
 		for (var i=0; i<snippets.length; i++) {
@@ -159,7 +153,6 @@ CodePress = {
 	},
 
 	complete : function(trigger) {
-		//alert('Gecko.complete');
 		window.getSelection().getRangeAt(0).deleteContents();
 		var complete = Language.complete;
 		for (var i=0; i<complete.length; i++) {
@@ -179,7 +172,6 @@ CodePress = {
 	},
 	
 	getCompleteEndingChars : function() {
-		//alert('Gecko.completeEndingsChar');
 		var cChars = '';
 		for(var i=0;i<Language.complete.length;i++)
 			cChars += '|'+Language.complete[i].output.charAt(Language.complete[i].output.length-1);
@@ -224,7 +216,6 @@ CodePress = {
 	},
 	
 	insertCode : function(code,replaceCursorBefore) {
-		//alert('Gecko.insertCode');
 	var range = window.getSelection().getRangeAt(0);
 		var node = window.document.createTextNode(code);
 		var selct = window.getSelection();
@@ -242,7 +233,6 @@ CodePress = {
 	
 	// get code from editor
 	getCode : function() {
-		//	alert('Gecko.getCode');
 		if(!document.getElementsByTagName('pre')[0] || editor.innerHTML == '')
 			editor = CodePress.getEditor();
 		var code = editor.innerHTML;
@@ -257,7 +247,6 @@ CodePress = {
 
 	// put code inside editor
 	setCode : function() {
-	//	alert('Gecko.setCode');
 		var code = arguments[0];
 		code = code.replace(/\u2009/gi,'');
 		code = code.replace(/&/gi,'&amp;');

@@ -82,8 +82,22 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         }, this);
         this.el_clear.on('click', this.clearCell, this);
         this.el_interrupt.on('click', this.interruptCell, this);
+        this.el_highlight.on('click', this.highlight, this);
+        this.el_autocomplete.on('click', this.autocompleteCode, this);
+        this.el_lineNumbers.on('click', this.lineNumbers, this);
     },
+    lineNumbers: function(){
+        document.getElementById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleLineNumbers();   
+    },
+    autocompleteCode: function(){
+    document.getElementById("cos").contentWindow.CodePress.autocomplete=(document.getElementById("cos").contentWindow.CodePress.autocomplete)? false : true;
+        document.getElementById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleAutoComplete();   
+    },
+    highlight: function(){
 
+        alert(document.getElementById("cos").contentWindow.CodePress.getCode());  
+    
+    },
     onRender: function() {
         FEMhub.InputCell.superclass.onRender.apply(this, arguments);
 
@@ -91,7 +105,11 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
  this.el.addClass('femhub-cell-input');
 
       //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
-       var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/cos.html' width=500 height=600 FRAMEBORDER=0>";
+  //     var ta_form = "<textarea id='CP_textarea' class='codepress java' style='width:300px;height:1500px;' wrap='off'></textarea>";
+
+// var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
+      var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/codepress.html?language=java' width=500 height=600 FRAMEBORDER=0>";
+  //    var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/cos.html' width=500 height=600 FRAMEBORDER=0>";
       //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea><textarea id='asdf' class='codepress php' style='width:700px;height:300px;' wrap='off'>asdasdas </textarea>";
      
         var ta_args = [''];//['femhub-cell-io-textarea femhub-cell-input-textarea', '1', '0', 'off', 'false'];
@@ -107,7 +125,23 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
                     tag: 'div',
                     cls: 'femhub-cell-input-control femhub-cell-input-evaluate femhub-enabled',
                     html: 'evaluate',
-                }, {
+                },
+                {
+                    tag: 'div',
+                    cls: 'femhub-cell-input-control femhub-cell-input-linenumbers femhub-enabled',
+                    html: 'line numbers',
+                },
+                {
+                    tag: 'div',
+                    cls: 'femhub-cell-input-control femhub-cell-input-autocomplete femhub-enabled',
+                    html: 'autocomplete',
+                },
+                {
+                    tag: 'div',
+                    cls: 'femhub-cell-input-control femhub-cell-input-highlight femhub-enabled',
+                    html: 'highlighting',
+                },
+		 {
                     tag: 'div',
                     cls: 'femhub-cell-input-control femhub-cell-input-clear femhub-enabled',
                     html: 'clear',
@@ -130,7 +164,9 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         this.el_evaluate = this.el_controls.child('.femhub-cell-input-evaluate');
         this.el_clear = this.el_controls.child('.femhub-cell-input-clear');
         this.el_interrupt = this.el_controls.child('.femhub-cell-input-interrupt');
-
+        this.el_highlight = this.el_controls.child('.femhub-cell-input-highlight');
+        this.el_autocomplete = this.el_controls.child('.femhub-cell-input-autocomplete');
+        this.el_lineNumbers = this.el_controls.child('.femhub-cell-input-linenumbers');
         this.autosize();
 
         this.setupInputCellObserver();
@@ -405,8 +441,8 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     },
 
     evaluateCell: function(config) {
+	alert('bke');
         config = config || {};
-
         var input = this.preprocessCell();
 
         this.el_evaluate.removeClass('femhub-enabled');
@@ -582,11 +618,7 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     },
 
     clearCell: function() {
-        this.destroyOutputCells();
-        this.setInput('');
-        this.clearLabel();
-        this.autosize();
-        this.focusCell();
+	document.getElementById("cos").contentWindow.CodePress.getCode.setCode('');   
     },
 
     interruptCell: function() {
