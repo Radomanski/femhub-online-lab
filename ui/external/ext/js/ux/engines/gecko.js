@@ -233,16 +233,20 @@ CodePress = {
 	
 	// get code from editor
 	getCode : function() {
-		if(!document.getElementsByTagName('pre')[0] || editor.innerHTML == '')
-			editor = CodePress.getEditor();
-		var code = editor.innerHTML;
-		code = code.replace(/<br>/g,'\n');
-		code = code.replace(/\u2009/g,'');
-		code = code.replace(/<.*?>/g,'');
-		code = code.replace(/&lt;/g,'<');
-		code = code.replace(/&gt;/g,'>');
-		code = code.replace(/&amp;/gi,'&');
-		return code;
+		//if(editor!=undefined)
+		//{
+		    if(!document.getElementsByTagName('pre')[0] || editor.innerHTML == '')
+			    editor = CodePress.getEditor();
+		    var code = editor.innerHTML;
+		    code = code.replace(/<br>/g,'\n');
+		    code = code.replace(/\u2009/g,'');
+		    code = code.replace(/<.*?>/g,'');
+		    code = code.replace(/&lt;/g,'<');
+		    code = code.replace(/&gt;/g,'>');
+		    code = code.replace(/&amp;/gi,'&');
+		    return code;
+		// }
+		//else return '';
 	},
 
 	// put code inside editor

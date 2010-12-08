@@ -1,7 +1,6 @@
 
 FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     ctype: 'input',
-
     labelPrefix: 'In ',
     evaluating: false,
 
@@ -9,7 +8,10 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     observationInterval: 250,
 
     getInput: function() {
-        return this.el_textarea.getValue();
+        
+	if(document.getElementById("cos").contentWindow.CodePress!=undefined)
+		return document.getElementById("cos").contentWindow.CodePress.getCode();
+	else return '';
     },
 
     setInput: function(text) {
@@ -94,9 +96,8 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         document.getElementById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleAutoComplete();   
     },
     highlight: function(){
-
-        alert(document.getElementById("cos").contentWindow.CodePress.getCode());  
-    
+	var foo=this.getInput();
+        alert(foo);  
     },
     onRender: function() {
         FEMhub.InputCell.superclass.onRender.apply(this, arguments);
@@ -441,7 +442,7 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     },
 
     evaluateCell: function(config) {
-	alert('bke');
+
         config = config || {};
         var input = this.preprocessCell();
 

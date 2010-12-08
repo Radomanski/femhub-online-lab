@@ -68,6 +68,7 @@ CodePress = function(obj) {
 	}
 	
 	self.setOptions = function() {
+
 		if(self.options.match('autocomplete-off')) self.toggleAutoComplete();
 		if(self.options.match('readonly-on')) self.toggleReadOnly();
 		if(self.options.match('linenumbers-off')) self.toggleLineNumbers();
