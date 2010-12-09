@@ -97,7 +97,15 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     },
     highlight: function(){
 	var foo=this.getInput();
-        alert(foo);  
+        alert(foo);
+        alert(this.line());  
+    },
+    line : function()
+    {
+        var output=this.getInput();
+        var patt1=/\n/gi;
+        a=output.match(patt1);
+        return a==null?1:a.length;
     },
     onRender: function() {
         FEMhub.InputCell.superclass.onRender.apply(this, arguments);

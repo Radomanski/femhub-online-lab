@@ -233,8 +233,6 @@ CodePress = {
 	
 	// get code from editor
 	getCode : function() {
-		//if(editor!=undefined)
-		//{
 		    if(!document.getElementsByTagName('pre')[0] || editor.innerHTML == '')
 			    editor = CodePress.getEditor();
 		    var code = editor.innerHTML;
@@ -245,10 +243,7 @@ CodePress = {
 		    code = code.replace(/&gt;/g,'>');
 		    code = code.replace(/&amp;/gi,'&');
 		    return code;
-		// }
-		//else return '';
 	},
-
 	// put code inside editor
 	setCode : function() {
 		var code = arguments[0];
