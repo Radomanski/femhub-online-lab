@@ -15,8 +15,10 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     },
 
     setInput: function(text) {
-        this.setRowsCols(text);
-        this.el_textarea.dom.value = text;
+	if(document.getElementById("cos").contentWindow.CodePress!=undefined)
+		return document.getElementById("cos").contentWindow.CodePress.setCode(text);
+       // this.setRowsCols(text);
+       // this.el_textarea.dom.value = text;
     },
 
     getText: function() {
@@ -99,6 +101,7 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
 	var foo=this.getInput();
         alert(foo);
         alert(this.line());  
+	this.setInput("fuuuuu");
     },
     line : function()
     {
@@ -115,9 +118,10 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
 
       //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
   //     var ta_form = "<textarea id='CP_textarea' class='codepress java' style='width:300px;height:1500px;' wrap='off'></textarea>";
-
+var language="java";
+var ts = (new Date).getTime();
 // var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
-      var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/codepress.html?language=java' width=500 height=600 FRAMEBORDER=0>";
+      var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=600 FRAMEBORDER=0>";
   //    var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/cos.html' width=500 height=600 FRAMEBORDER=0>";
       //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea><textarea id='asdf' class='codepress php' style='width:700px;height:300px;' wrap='off'>asdasdas </textarea>";
      
