@@ -678,15 +678,15 @@ var ts = (new Date).getTime();
 
     //    var selection = this.getSelection();
 
-   //     selection.start += length;
+    //    selection.start += length;
     //    selection.end += length;
 
         cell.setInput(input);
-        cell.setSelection(selection);
+     //   cell.setSelection(selection);
 
         this.destroyOutputCells();
 
-        cell.autosize();
+     //   cell.autosize();
         cell.focusCell();
         this.destroy();
 
@@ -707,14 +707,14 @@ var ts = (new Date).getTime();
         }
 
         input = this.getInput() + input;
-        var selection = this.getSelection();
+       // var selection = this.getSelection();
 
-        cell.setInput(input);
-        cell.setSelection(selection);
+       // cell.setInput(input);
+       // cell.setSelection(selection);
 
         this.destroyOutputCells();
 
-        cell.autosize();
+       // cell.autosize();
         cell.focusCell();
         this.destroy();
 
