@@ -709,7 +709,7 @@ var ts = (new Date).getTime();
         input = this.getInput() + input;
        // var selection = this.getSelection();
 
-       // cell.setInput(input);
+        cell.setInput(input);
        // cell.setSelection(selection);
 
         this.destroyOutputCells();
