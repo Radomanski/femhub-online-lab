@@ -3,20 +3,29 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
     ctype: 'input',
     labelPrefix: 'In ',
     evaluating: false,
-
+    number:0,
     observedInputLength: 0,
     observationInterval: 250,
 
     getInput: function() {
-        
-	if(document.getElementById("cos").contentWindow.CodePress!=undefined)
-		return document.getElementById("cos").contentWindow.CodePress.getCode();
-	else return '';
+     // alert(this.el_textarea);
+//alert(this.el_textarea.dom.contentWindow.CodePress.editor);
+      if(this.el_textarea!=undefined&&this.el_textarea.dom.contentWindow!=undefined&&this.el_textarea.dom.contentWindow.CodePress!=undefined)
+	return this.el_textarea.dom.contentWindow.CodePress.getCode();
+      else return '';
+      //  if(document.getElementsByTagName("iframe")!=undefined)
+       // {
+	//    if(document.getElementsByTagName("iframe")[number].contentWindow.CodePress!=undefined)
+	//        return document.getElementsByTagName("iframe")[number].contentWindow.CodePress.getCode();
+	//    else return '';
+      //  }
     },
 
     setInput: function(text) {
-	if(document.getElementById("cos").contentWindow.CodePress!=undefined)
-		return document.getElementById("cos").contentWindow.CodePress.setCode(text);
+        if(this.el_textarea.dom.contentWindow.CodePress!=undefined)
+            return this.el_textarea.dom.contentWindow.CodePress.setCode(text);
+	//if(document.getElementsByTagName("iframe")[number].contentWindow.CodePress!=undefined)
+	//	return document.getElementsByTagName("iframe")[number].contentWindow.CodePress.setCode(text);
        // this.setRowsCols(text);
        // this.el_textarea.dom.value = text;
     },
@@ -91,17 +100,17 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         this.el_lineNumbers.on('click', this.lineNumbers, this);
     },
     lineNumbers: function(){
-        document.getElementById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleLineNumbers();   
+        document.getElementsById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleLineNumbers();   
     },
     autocompleteCode: function(){
-    document.getElementById("cos").contentWindow.CodePress.autocomplete=(document.getElementById("cos").contentWindow.CodePress.autocomplete)? false : true;
-        document.getElementById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleAutoComplete();   
+    document.getElementsByTagName("codepress")[0].contentWindow.CodePress.autocomplete=(document.getElementsByTagName("codepress")[0].contentWindow.CodePress.autocomplete)? false : true;
+        document.getElementsByTagName("codepress")[0].contentWindow.document.getElementsByTagName("iframe")[0].toggleAutoComplete();   
     },
     highlight: function(){
 	var foo=this.getInput();
         alert(foo);
         alert(this.line());  
-	this.setInput("fuuuuu");
+	//this.setInput("fuuuuu");
     },
     line : function()
     {
@@ -121,10 +130,11 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
 var language="java";
 var ts = (new Date).getTime();
 // var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea> <a href='/static/external/ext/js/ux/Kopia index.html'>LINK</a>";
-      var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=600 FRAMEBORDER=0>";
+      var ta_form = "<iframe class='femhub-cell-io-textarea femhub-cell-input-textarea' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=600 FRAMEBORDER=0>";
   //    var ta_form = "<iframe id='cos' src='/static/external/ext/js/ux/cos.html' width=500 height=600 FRAMEBORDER=0>";
       //  var ta_form = "<textarea class='{0}' rows='{1}' cols='{2}' wrap='{3}' spellcheck='{4}'></textarea><textarea id='asdf' class='codepress php' style='width:700px;height:300px;' wrap='off'>asdasdas </textarea>";
-     
+       // var objects = document.getElementsByTagName('iframe'); 
+       // number=objects.length;
         var ta_args = [''];//['femhub-cell-io-textarea femhub-cell-input-textarea', '1', '0', 'off', 'false'];
         var ta_tmpl = new Ext.DomHelper.createTemplate(ta_form);
 
