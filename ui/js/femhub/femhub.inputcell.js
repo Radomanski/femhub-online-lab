@@ -67,7 +67,9 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
             cells[i].destroy();
         }
     },
-
+    highlighting: function(){
+        this.el_textarea.dom.contentWindow.CodePress.syntaxHighlight('generic');
+    },
     setupInputCellObserver: function() {
         var observer = {
             run: function() {
@@ -632,6 +634,7 @@ var ts = (new Date).getTime();
             },
             scope: this,
         });
+        this.highlighting();
     },
 
     wipeCell: function() {
@@ -689,7 +692,7 @@ var ts = (new Date).getTime();
      //   cell.autosize();
         cell.focusCell();
         this.destroy();
-
+        cell.highlighting();
         return true;
     },
 
@@ -717,7 +720,7 @@ var ts = (new Date).getTime();
        // cell.autosize();
         cell.focusCell();
         this.destroy();
-
+        this.highlighting();
         return true;
     },
 
