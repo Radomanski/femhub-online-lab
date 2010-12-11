@@ -100,11 +100,11 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         this.el_lineNumbers.on('click', this.lineNumbers, this);
     },
     lineNumbers: function(){
-        document.getElementsById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleLineNumbers();   
+        //document.getElementsById("cos").contentWindow.document.getElementsByTagName("iframe")[0].toggleLineNumbers();   
     },
     autocompleteCode: function(){
-    document.getElementsByTagName("codepress")[0].contentWindow.CodePress.autocomplete=(document.getElementsByTagName("codepress")[0].contentWindow.CodePress.autocomplete)? false : true;
-        document.getElementsByTagName("codepress")[0].contentWindow.document.getElementsByTagName("iframe")[0].toggleAutoComplete();   
+    this.el_textarea.dom.contentWindow.CodePress.autocomplete=(this.el_textarea.dom.contentWindow.CodePress.autocomplete)? false : true;
+   //     this.el_textarea.dom.contentWindow.CodePress.toggleAutoComplete();   
     },
     highlight: function(){
 	var foo=this.getInput();
@@ -641,7 +641,7 @@ var ts = (new Date).getTime();
     },
 
     clearCell: function() {
-	document.getElementById("cos").contentWindow.CodePress.getCode.setCode('');   
+	this.setInput('');   
     },
 
     interruptCell: function() {
@@ -676,10 +676,10 @@ var ts = (new Date).getTime();
         var length = input.length;
         input += this.getInput();
 
-        var selection = this.getSelection();
+    //    var selection = this.getSelection();
 
-        selection.start += length;
-        selection.end += length;
+   //     selection.start += length;
+    //    selection.end += length;
 
         cell.setInput(input);
         cell.setSelection(selection);
