@@ -42,7 +42,7 @@ FEMhub.IOCell = Ext.extend(FEMhub.Cell, {
     setRowsCols: function(text) {
         var rows =20;// text.replace(/[^\n]/g, '').length + 1;
         var cols =20;// text.split();
-
+/*
         for (var i = 0; i < cols.length; i++) {
             cols[i] = cols[i].length;
         }
@@ -50,7 +50,7 @@ FEMhub.IOCell = Ext.extend(FEMhub.Cell, {
         cols = Ext.max(cols);
 
         this.el_textarea.dom.rows = rows;
-        this.el_textarea.dom.cols = cols;
+        this.el_textarea.dom.cols = cols;*/
     },
 
     getLocation: function() {

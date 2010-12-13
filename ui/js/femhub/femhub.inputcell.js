@@ -2,17 +2,19 @@ var obj;
 var ent=0;
 function evthand()
 {
+//alert(obj.el_textarea.dom.offsetHeight);
 if (ent==1)
 {
+	//obj.el_textarea.dom.height = parseInt(height)+60;
 	ent=0;
 	obj.evaluateCell({ keepfocus: true });
 }
 else if(ent==2)
 {
-	obj.el_textarea.dom.height=100;
+	obj.el_textarea.dom.height=obj.autosize();
 	ent=0;
 }
-t=setTimeout("evthand()",10);
+t=setTimeout("evthand()",1);
 }
 
 FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
@@ -121,14 +123,13 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
 var language="java";
 var ts = (new Date).getTime();
 
-      var ta_form = "<iframe class='femhub-cell-io-textarea femhub-cell-input-textarea' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=100 FRAMEBORDER=0>";
+      var ta_form = "<iframe class='code press' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=38 FRAMEBORDER=0 SCROLLING=NO>";
         var ta_args = [''];
         var ta_tmpl = new Ext.DomHelper.createTemplate(ta_form);
-	foo=1;
         obj=this;
 	var ele=this.el_textarea;
         this.el_textarea = ta_tmpl.append(this.el_content, ta_args, true);
-
+        //this.el_textarea.dom.clientHeight=1500;
         this.el_textarea.dom.contentWindow.addEventListener('keypress',function(evt,ele){
 	if(evt.shiftKey&&evt.keyCode==13)
 	{
@@ -173,17 +174,17 @@ var ts = (new Date).getTime();
         if (this.owner.showInputControls) {
             this.el_controls.addClass('femhub-enabled');
         }
-
         this.el_evaluate = this.el_controls.child('.femhub-cell-input-evaluate');
         this.el_clear = this.el_controls.child('.femhub-cell-input-clear');
         this.el_interrupt = this.el_controls.child('.femhub-cell-input-interrupt');
         this.el_autocomplete = this.el_controls.child('.femhub-cell-input-autocomplete');
-        this.autosize();
-
-        this.setupInputCellObserver();
+       // this.autosize();
+	
+       // this.setupInputCellObserver();
         this.setupInputCellEvents();
 	this.clearCell();
 	evthand(); 
+        //console.log("%d\n",this.el_textarea.dom.clientHeight);
 //if (this.start === true) {
         // TODO: this.el_textarea.update("Click here to start ...");
         //}
@@ -206,11 +207,11 @@ var ts = (new Date).getTime();
     },
 
     autosize: function() {
-        FEMhub.InputCell.superclass.autosize.apply(this, arguments);
-
-        if (!this.collapsed) {
-            this.setRowsCols(this.getInput());
-        }
+      //  FEMhub.InputCell.superclass.autosize.apply(this, arguments);
+	return 14+this.line()*16+8;
+    //    if (!this.collapsed) {
+     //       this.setRowsCols(this.getInput());
+     //   }
     },
 
     newline: function() {
@@ -253,9 +254,9 @@ var ts = (new Date).getTime();
         }
 
         this.setInput(input);
-        this.autosize();
+        //this.autosize();
 
-        this.setSelection({ start: pos, end: pos });
+        //this.setSelection({ start: pos, end: pos });
     },
 
     backspace: function() {
@@ -310,9 +311,9 @@ var ts = (new Date).getTime();
         }
 
         this.setInput(input);
-        this.autosize();
+    //    this.autosize();
 
-        this.setSelection({ start: pos, end: pos });
+      //  this.setSelection({ start: pos, end: pos });
     },
 
     introspectCell: function() {
