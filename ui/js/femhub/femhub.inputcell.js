@@ -1,20 +1,30 @@
-var obj;
+var obj=new Array();
 var ent=0;
+var activeCell=0;
+function activeInputCell()
+{
+	var i;
+	for(i=0;i<obj.length;i=i+1)
+		if(obj[i].el_textarea.dom.contentWindow!=undefined&&obj[i].el_textarea.dom.contentWindow.ts==activeCell)
+			return i;
+}
 function evthand()
 {
 //alert(obj.el_textarea.dom.offsetHeight);
 if (ent==1)
 {
+        var i = activeInputCell();
 	//obj.el_textarea.dom.height = parseInt(height)+60;
 	ent=0;
-	obj.evaluateCell({ keepfocus: true });
+	obj[i].evaluateCell({ keepfocus: true });
 }
 else if(ent==2)
 {
-	obj.el_textarea.dom.height=obj.autosize();
+        var i = activeInputCell();
+	obj[i].el_textarea.dom.height=obj[i].autosize();
 	ent=0;
 }
-t=setTimeout("evthand()",1);
+t=setTimeout("evthand()",5);
 }
 
 FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
@@ -126,11 +136,10 @@ var ts = (new Date).getTime();
       var ta_form = "<iframe class='code press' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=38 FRAMEBORDER=0 SCROLLING=NO>";
         var ta_args = [''];
         var ta_tmpl = new Ext.DomHelper.createTemplate(ta_form);
-        obj=this;
-	var ele=this.el_textarea;
+        obj.push(this);
         this.el_textarea = ta_tmpl.append(this.el_content, ta_args, true);
-        //this.el_textarea.dom.clientHeight=1500;
         this.el_textarea.dom.contentWindow.addEventListener('keypress',function(evt,ele){
+	activeCell=this.ts;
 	if(evt.shiftKey&&evt.keyCode==13)
 	{
 		ent=1;
@@ -183,7 +192,7 @@ var ts = (new Date).getTime();
        // this.setupInputCellObserver();
         this.setupInputCellEvents();
 	this.clearCell();
-	evthand(); 
+	evthand();
         //console.log("%d\n",this.el_textarea.dom.clientHeight);
 //if (this.start === true) {
         // TODO: this.el_textarea.update("Click here to start ...");
