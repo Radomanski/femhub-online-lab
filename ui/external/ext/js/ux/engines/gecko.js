@@ -96,9 +96,12 @@ CodePress = {
 	getEditor : function() {
 		if(!document.getElementsByTagName('pre')[0]) {
 			body = document.getElementsByTagName('body')[0];
+                        if(body)
+                        {
 			if(!body.innerHTML) return body;
 			if(body.innerHTML=="<br>") body.innerHTML = "<pre> </pre>";
 			else body.innerHTML = "<pre>"+body.innerHTML+"</pre>";
+                        }
 		}
 		return document.getElementsByTagName('pre')[0];
 	},
@@ -233,9 +236,11 @@ CodePress = {
 	
 	// get code from editor
 	getCode : function() {
+		    if(editor!=undefined)
+                    {
 		    if(!document.getElementsByTagName('pre')[0] || editor.innerHTML == '')
 			    editor = CodePress.getEditor();
-		    var code = editor.innerHTML;
+                    var code = editor.innerHTML;
 		    code = code.replace(/<br>/g,'\n');
 		    code = code.replace(/\u2009/g,'');
 		    code = code.replace(/<.*?>/g,'');
@@ -243,6 +248,7 @@ CodePress = {
 		    code = code.replace(/&gt;/g,'>');
 		    code = code.replace(/&amp;/gi,'&');
 		    return code;
+                    }
 	},
 	// put code inside editor
 	setCode : function() {
