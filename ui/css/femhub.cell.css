@@ -1,0 +1,260 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * CELL PANEL
+ */
+
+.femhub-cells {
+    background-color: white;
+    position: relative;
+    overflow-x: none;
+    overflow-y: auto;
+    display: block;
+}
+
+.femhub-cells-demo {
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid gray;
+}
+
+/*
+ * BASE CELL
+ */
+
+.femhub-cell {
+    position: relative;
+    display: block;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    font-size: 100%;
+    font-family: monospace;
+}
+
+.femhub-cell-bracket {
+    border: 1px solid blue;
+    border-left: none;
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: pointer;
+}
+
+.femhub-cell-triangle {
+    width: 0;
+    height: 0;
+    border-width: 3px;
+    border-style: solid;
+    border-left-color: white;
+    border-top-color: white;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    display: none;
+    z-index: 1;
+}
+
+.femhub-cell-bracket:hover .femhub-cell-triangle {
+    display: block;
+}
+
+/*
+ * INPUT/OUTPUT CELL
+ */
+
+.femhub-cell-io {
+    height: auto;
+}
+
+.femhub-cell-io-label {
+    width: auto;
+    height: auto;
+    position: absolute;
+    white-space: pre;
+    border-top: 1px solid white;
+    padding-top: 5px;
+    visibility: hidden;
+}
+
+.femhub-cell-input .femhub-cell-io-label {
+    color: blue;
+}
+
+.femhub-cell-output .femhub-cell-io-label {
+    color: red;
+}
+
+.femhub-cell-io-content {
+    margin-right: 22px; /* accomodate for W3C box model */
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.femhub-cell-io-textarea {
+    width: 100%;
+    padding: 5px;
+    overflow: hidden;
+    font-size: inherit;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bfbfbf;
+    -moz-box-shadow: 0 0 6px #bfbfbf;
+    -webkit-box-shadow: 0 0 6px #bfbfbf;
+}
+
+.femhub-cell-io-textarea.femhub-focus {
+    border-color: #999adf;
+}
+
+/*
+ * OUTPUT CELL
+ */
+
+.femhub-cell-output-textarea {
+    height: auto;
+    cursor: text;
+    outline: none;
+    overflow: auto;
+    white-space: pre;
+    background-color: #ffffcc;
+}
+
+/*
+ * ERROR CELL
+ */
+
+.femhub-cell-error .femhub-cell-output-textarea {
+    background-color: #ffcc99;
+}
+
+/*
+ * IMAGE CELL
+ */
+
+.femhub-cell-image-textarea {
+    background-color: white;
+    cursor: default;
+    overflow: auto;
+}
+
+.femhub-cell-image-image {
+    width: auto;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+ * INPUT CELL
+ */
+
+.femhub-cell-input-textarea {
+    height: 100%;
+    white-space: pre;
+}
+
+.femhub-cell-input-controls {
+    margin: 2px 0 0 2px;
+    width: 100%;
+    display: none;
+    font-size: 7pt;
+}
+
+.femhub-cell-input-controls.femhub-enabled {
+    display: block;
+}
+
+.femhub-cell-input-controls.femhub-chrome {
+    margin-top: 0;
+}
+
+.femhub-cell-input-control {
+    padding-right: 5px;
+    display: inline;
+    cursor: pointer;
+    color: #dddddd;
+}
+
+.femhub-cell-input-control.femhub-enabled {
+    color: #bfbfbf;
+}
+
+.femhub-cell-input-control.femhub-enabled:hover {
+    color: blue;
+}
+
+/*
+ * COLLAPSED CELLS
+ */
+
+.femhub-cell-collapsed {
+    height: 5px !important;
+    border-bottom: 1px dashed #bfbfbf;
+}
+
+.femhub-cell-collapsed.femhub-focus {
+    border-bottom-style: solid;
+}
+
+.femhub-cell-collapsed.femhub-enabled:hover {
+    border-bottom-color: blue;
+}
+
+.femhub-cell-collapsed .femhub-cell-triangle {
+    display: block;
+    border-right-color: #bfbfbf;
+    border-bottom-color: #bfbfbf;
+}
+
+.femhub-cell-collapsed.femhub-enabled:hover .femhub-cell-triangle {
+    border-right-color: blue;
+    border-bottom-color: blue;
+}
+
+/*
+ * CONTENT CELL
+ */
+
+.femhub-cell-text {
+    height: auto;
+    display: block;
+}
+
+.femhub-cell-text-area {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    min-height: 10pt;
+    margin-right: 10px;
+    font-family: sans-serif;
+}
+
+.femhub-cell-text-area ul {
+    list-style: disc outside;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 40px;
+}
+
+.femhub-cell-text-area ol {
+    list-style: decimal outside;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 40px;
+}
+

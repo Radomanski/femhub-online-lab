@@ -19,7 +19,7 @@ Language.snippets = []
 
 Language.complete = [
 	{ input : '\'',output : '\'$0\'' },
-	{ input : ':',output : ':\n&#9$0' },
+//	{ input : ':',output : ':\n&#9$0' },
 	{ input : '"', output : '"$0"' },
 	{ input : '(', output : '\($0\)' },
 	{ input : '[', output : '\[$0\]' },

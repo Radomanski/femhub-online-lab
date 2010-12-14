@@ -128,10 +128,10 @@ FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
         this.el.addClass('femhub-cell-input');
  this.el.addClass('femhub-cell-input');
 
-var language="java";
-var ts = (new Date).getTime();
+        this.language="python";
+	var ts = (new Date).getTime();
 
-      var ta_form = "<iframe class='code press' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+language+"' width=500 height=38 FRAMEBORDER=0 SCROLLING=NO>";
+      var ta_form = "<iframe class='code press' src='/static/external/ext/js/ux/codepress.html?ts="+ts+"?language="+this.language+"' width=500 height=38 FRAMEBORDER=0 SCROLLING=NO>";
         var ta_args = [''];
         var ta_tmpl = new Ext.DomHelper.createTemplate(ta_form);
         obj.push(this);
