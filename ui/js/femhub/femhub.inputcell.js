@@ -10,11 +10,9 @@ function activeInputCell()
 }
 function evthand()
 {
-//alert(obj.el_textarea.dom.offsetHeight);
 if (ent==1)
 {
         var i = activeInputCell();
-	//obj.el_textarea.dom.height = parseInt(height)+60;
 	ent=0;
 	obj[i].evaluateCell({ keepfocus: true });
 }
@@ -24,7 +22,7 @@ else if(ent==2)
 	obj[i].el_textarea.dom.height=obj[i].autosize();
 	ent=0;
 }
-t=setTimeout("evthand()",5);
+t=setTimeout("evthand()",10);
 }
 
 FEMhub.InputCell = Ext.extend(FEMhub.IOCell, {
@@ -144,7 +142,7 @@ var ts = (new Date).getTime();
 	{
 		ent=1;
 	}
-	if(!evt.shiftKey&&evt.keyCode==13)
+	if((!evt.shiftKey&&evt.keyCode==13)||evt.keyCode==8)
 	{
 		ent=2;
 	}
